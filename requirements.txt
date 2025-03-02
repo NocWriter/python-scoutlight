@@ -1,0 +1,5 @@
+etcd3==0.12.0
+grpcio==1.39.0
+
+# protobuf 3.17.3 is the latest one for Python 2.7 (cannot upgrade beyond that).
+protobuf==3.17.3
