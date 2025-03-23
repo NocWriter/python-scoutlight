@@ -1,0 +1,10 @@
+services:
+  etcd:
+    image: bitnami/etcd:latest
+    container_name: etcd
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=true
+      - ETCD_ENABLE_V2=true

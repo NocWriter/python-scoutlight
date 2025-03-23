@@ -10,13 +10,18 @@ def normalize_key(key):
     """
     assert isinstance(key, str), "Key must be a string."
 
+    # Trim leading/trailing spaces. Valid key does not start or end with spaces.
     key = key.strip()
+
+    # Valid key must always start with forward slash.
     if not key.startswith("/"):
         key = "/" + key
 
-    if key.endswith("/"):
+    # Key must never end with forward slash.
+    while key.endswith("/"):
         key = key[:-1]
 
+    # Remove any duplicate forward slashes in the key.
     while '//' in key:
         key = key.replace('//', '/')
 
@@ -32,7 +37,24 @@ def construct_key(*args):
     :return: New key.
     """
     for arg in args:
-        assert isinstance(arg, str), "All key parts must be strings."
+        assert isinstance(arg, basestring), "All key parts must be strings."
 
     key = "/".join(args)
     return normalize_key(key)
+
+
+def starts_with(key, sub_key):
+    """
+    Test if key starts with sub_key.
+
+    :param key: Key to test.
+    :param sub_key: Subkey to test.
+    :return: True if key starts with sub_key, otherwise False.
+    """
+    assert isinstance(key, str) and len(str) > 0, "Key must be a string."
+    assert isinstance(sub_key, str), "Subkey must be a string."
+
+    if not sub_key.endswith("/"):
+        sub_key += '/'
+
+    return key.startswith(sub_key)

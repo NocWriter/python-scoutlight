@@ -1,7 +1,8 @@
+import logging
 from threading import Thread, Event, current_thread
 from time import time
+
 from typing import Callable, Union
-import logging
 
 logger = logging.getLogger(__name__)
 
